@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanish Cheats</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:#020617;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* PARTICLE CANVAS */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
+
+/* SCREEN SCAN GLITCH */
+.scanline{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  background:linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,255,255,0.15) 50%,
+    transparent 100%
+  );
+  animation:scanMove 6s linear infinite;
+  mix-blend-mode:screen;
+}
+
+@keyframes scanMove{
+  from{transform:translateY(-100%);}
+  to{transform:translateY(100%);}
+}
+
+/* HEADER */
+header{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:30px 60px;
+}
+
+.logo{
+  font-size:1.5rem;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.logo span{
+  color:#00ffff;
+}
+
+/* FLICKER */
+.flicker{
+  animation:flickerAnim 4s infinite;
+}
+
+@keyframes flickerAnim{
+  0%,95%{opacity:1;}
+  96%{opacity:.4;}
+  97%{opacity:1;}
+  98%{opacity:.2;}
+  99%{opacity:1;}
+}
+
+.status{
+  padding:10px 18px;
+  border:1px solid #00ff88;
+  border-radius:25px;
+  background:rgba(0,255,136,0.1);
+  box-shadow:0 0 15px rgba(0,255,136,0.6);
+  font-size:0.85rem;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:120px 20px 80px;
+}
+
+/* GLITCH TEXT */
+.glitch{
+  position:relative;
+  font-size:clamp(3rem,6vw,5rem);
+  letter-spacing:4px;
+  color:#00ffff;
+  text-shadow:0 0 25px #00ffff;
+}
+
+.glitch::before,
+.glitch::after{
+  content:attr(data-text);
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+}
+
+.glitch::before{
+  color:#ff00ff;
+  animation:glitch1 2s infinite;
+}
+
+.glitch::after{
+  color:#00ff88;
+  animation:glitch2 2.5s infinite;
+}
+
+@keyframes glitch1{
+  0%{clip-path:inset(0 0 90% 0);}
+  20%{clip-path:inset(10% 0 60% 0);}
+  40%{clip-path:inset(40% 0 20% 0);}
+  60%{clip-path:inset(80% 0 5% 0);}
+  100%{clip-path:inset(0 0 90% 0);}
+}
+
+@keyframes glitch2{
+  0%{clip-path:inset(90% 0 0 0);}
+  30%{clip-path:inset(60% 0 10% 0);}
+  60%{clip-path:inset(20% 0 40% 0);}
+  100%{clip-path:inset(90% 0 0 0);}
+}
+
+.hero p{
+  margin-top:15px;
+  opacity:0.7;
+}
+
+/* FEATURES */
+.features{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  max-width:1200px;
+  margin:auto;
+  padding:60px;
+}
+
+.card{
+  background:rgba(0,0,0,0.6);
+  border:1px solid rgba(0,255,255,0.3);
+  border-radius:16px;
+  padding:35px 25px;
+  text-align:center;
+  box-shadow:inset 0 0 30px rgba(0,255,255,0.15);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 35px rgba(0,255,255,0.5);
+}
+
+.icon{
+  font-size:2.2rem;
+  color:#00ffff;
+  margin-bottom:15px;
+}
+
+/* CTA */
+.cta{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:center;
+  margin:60px 0 100px;
+}
+
+.cta a{
+  padding:18px 50px;
+  background:linear-gradient(90deg,#00ffff,#7c3aed);
+  color:#000;
+  font-weight:700;
+  border-radius:14px;
+  text-decoration:none;
+  box-shadow:0 0 40px rgba(0,255,255,0.7);
+  transition:.3s;
+}
+
+.cta a:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 70px rgba(124,58,237,0.9);
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+<div class="scanline"></div>
+
+<header>
+  <div class="logo flicker">TANISH<span>CHEATS</span></div>
+  <div class="status flicker">SYSTEM ONLINE</div>
+</header>
+
+<section class="hero">
+  <h1 class="glitch flicker" data-text="TANISH CHEATS">TANISH CHEATS</h1>
+  <p>Built for gamers. Designed as an identity.</p>
+</section>
+
+<section class="features">
+  <div class="card">
+    <div class="icon">🛡️</div>
+    <h3>Cyber Security</h3>
+    <p>Encrypted futuristic architecture.</p>
+  </div>
+  <div class="card">
+    <div class="icon">⚡</div>
+    <h3>Instant Systems</h3>
+    <p>Ultra-fast optimized response.</p>
+  </div>
+  <div class="card">
+    <div class="icon">💬</div>
+    <h3>24/7 Network</h3>
+    <p>Always-online support channels.</p>
+  </div>
+</section>
+
+<div class="cta flicker">
+  <a href="plans.html">ACCESS NOW</a>
+</div>
+
+<script>
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+let particles=[];
+for(let i=0;i<80;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    vx:(Math.random()-0.5)*0.7,
+    vy:(Math.random()-0.5)*0.7,
+    r:Math.random()*2+1
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="#7c3aed";
+  particles.forEach(p=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    if(p.x<0||p.x>canvas.width) p.vx*=-1;
+    if(p.y<0||p.y>canvas.height) p.vy*=-1;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+
+setInterval(()=>{
+  const g=document.querySelector(".glitch");
+  g.style.transform=`translate(${Math.random()*6-3}px,${Math.random()*6-3}px)`;
+  g.style.filter=`hue-rotate(${Math.random()*40}deg)`;
+  setTimeout(()=>{
+    g.style.transform="translate(0,0)";
+    g.style.filter="none";
+  },120);
+},3500);
+
+addEventListener("resize",()=>{
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+});
+</script>
+
+</body>
+</html>
